@@ -17,4 +17,18 @@ public class Routes {
                 .route(RequestPredicates.path("api/v1/products"), HandlerFunctions.http("http://localhost:8080"))
                 .build();
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> orderRoute(){
+        return GatewayRouterFunctions.route("order_service")
+                .route(RequestPredicates.path("api/v1/products"), HandlerFunctions.http("http://localhost:8081"))
+                .build();
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> inventoryRoute(){
+        return GatewayRouterFunctions.route("inventory_service")
+                .route(RequestPredicates.path("api/v1/inventories"), HandlerFunctions.http("http://localhost:8083"))
+                .build();
+    }
 }
